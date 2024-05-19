@@ -12,8 +12,8 @@ import EditModuleCard from "./EditModuleCard";
 import { useState } from "react";
 
 const Module = () => {
-  const [open, setOpen] = useState(false);
   const [moduleName, setModuleName] = useState("");
+  const [openEditModal, setOpenEditModal] = useState(false);
   const { isOpen, onOpen, onOpenChange } = useDisclosure({
     defaultOpen: false,
   });
@@ -48,12 +48,12 @@ const Module = () => {
             key="edit"
             className="rounded"
             onPress={() => {
+              setOpenEditModal(true);
               onOpen();
-              setOpen(true);
             }}
             startContent={<PencilLine width={15} height={15} />}
           >
-            Edit module name
+            Edit Module Name
           </DropdownItem>
           <DropdownItem
             key="delete"
@@ -70,7 +70,7 @@ const Module = () => {
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
-      {open && (
+      {openEditModal && (
         <EditModuleCard
           isOpen={isOpen}
           onOpenChange={onOpenChange}

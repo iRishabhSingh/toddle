@@ -12,7 +12,7 @@ import EditLinkCard from "./EditLinkCard";
 import { useDisclosure } from "@nextui-org/modal";
 
 const LinkCard = () => {
-  const [open, setOpen] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
   const [linkName, setLinkName] = useState("");
   const { isOpen, onOpen, onOpenChange } = useDisclosure({
     defaultOpen: false,
@@ -46,8 +46,8 @@ const LinkCard = () => {
             key="edit"
             className="rounded"
             onPress={() => {
+              setOpenEditModal(true);
               onOpen();
-              setOpen(true);
             }}
             startContent={<PencilLine width={15} height={15} />}
           >
@@ -68,7 +68,7 @@ const LinkCard = () => {
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
-      {open && (
+      {openEditModal && (
         <EditLinkCard
           isOpen={isOpen}
           onOpenChange={onOpenChange}

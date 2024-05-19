@@ -1,4 +1,4 @@
-import { Button } from "@nextui-org/button";
+import React from "react";
 import {
   Modal,
   ModalContent,
@@ -7,22 +7,29 @@ import {
   ModalFooter,
 } from "@nextui-org/modal";
 import { Input } from "@nextui-org/input";
+import { Button } from "@nextui-org/button";
 
-const EditUploadFile: React.FC<{
+interface EditUploadFileProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   setFileName: (fileName: string) => void;
-}> = ({ isOpen, onOpenChange, setFileName }) => {
+}
+
+const EditUploadFile: React.FC<EditUploadFileProps> = ({
+  isOpen,
+  onOpenChange,
+  setFileName,
+}) => {
   return (
     <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
       <ModalContent className="p-4 rounded-lg">
         {(onClose) => (
           <>
             <ModalHeader className="flex flex-col gap-1 font-semibold p-4">
-              Rename file
+              Rename File
             </ModalHeader>
             <ModalBody>
-              <p className="text-sm font-semibold">File name</p>
+              <p className="text-sm font-semibold">File Name</p>
               <Input
                 type="text"
                 onChange={(e) => setFileName(e.target.value)}
@@ -38,7 +45,7 @@ const EditUploadFile: React.FC<{
                 className="bg-[#008392] text-white rounded-lg"
                 onPress={onClose}
               >
-                Save changes
+                Save Changes
               </Button>
             </ModalFooter>
           </>

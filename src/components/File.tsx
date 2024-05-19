@@ -1,19 +1,20 @@
-import { Button } from "@nextui-org/button";
 import {
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
 } from "@nextui-org/dropdown";
-import { ArrowDownToLine, PencilLine, Trash2 } from "lucide-react";
-import { SlOptionsVertical } from "react-icons/sl";
-import { MdPictureAsPdf } from "react-icons/md";
-import EditUploadFile from "./EditUploadFile";
 import { useState } from "react";
+import { Button } from "@nextui-org/button";
+import { MdPictureAsPdf } from "react-icons/md";
+import { SlOptionsVertical } from "react-icons/sl";
+import { ArrowDownToLine, PencilLine, Trash2 } from "lucide-react";
+
+import EditUploadFile from "./EditUploadFile";
 import { useDisclosure } from "@nextui-org/modal";
 
 const FileCard = () => {
-  const [open, setOpen] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
   const [fileName, setFileName] = useState("");
   const { isOpen, onOpen, onOpenChange } = useDisclosure({
     defaultOpen: false,
@@ -28,7 +29,7 @@ const FileCard = () => {
           <MdPictureAsPdf width={15} height={15} />
         </div>
         <div>
-          <h3 className="text-sm">Introduction to the course</h3>
+          <h3 className="text-sm">Introduction to the Course</h3>
           <p className="text-xs">PDF</p>
         </div>
       </div>
@@ -47,15 +48,15 @@ const FileCard = () => {
             key="edit"
             className="rounded"
             onPress={() => {
+              setOpenEditModal(true);
               onOpen();
-              setOpen(true);
             }}
             startContent={<PencilLine width={15} height={15} />}
           >
             Rename
           </DropdownItem>
           <DropdownItem
-            key="edit"
+            key="download"
             showDivider
             className="rounded"
             startContent={<ArrowDownToLine width={15} height={15} />}
@@ -77,7 +78,7 @@ const FileCard = () => {
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
-      {open && (
+      {openEditModal && (
         <EditUploadFile
           isOpen={isOpen}
           onOpenChange={onOpenChange}

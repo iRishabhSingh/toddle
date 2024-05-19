@@ -1,4 +1,4 @@
-import { Button } from "@nextui-org/button";
+import React from "react";
 import {
   Modal,
   ModalContent,
@@ -7,22 +7,29 @@ import {
   ModalFooter,
 } from "@nextui-org/modal";
 import { Input } from "@nextui-org/input";
+import { Button } from "@nextui-org/button";
 
-const AddModuleCard: React.FC<{
+interface AddModuleCardProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   setModuleName: (moduleName: string) => void;
-}> = ({ isOpen, onOpenChange, setModuleName }) => {
+}
+
+const AddModuleCard: React.FC<AddModuleCardProps> = ({
+  isOpen,
+  onOpenChange,
+  setModuleName,
+}) => {
   return (
     <Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="blur">
       <ModalContent className="p-4 rounded-lg">
         {(onClose) => (
           <>
             <ModalHeader className="flex flex-col gap-1 font-semibold p-4">
-              Create new module
+              Create New Module
             </ModalHeader>
             <ModalBody>
-              <p className="text-sm font-semibold">Module name</p>
+              <p className="text-sm font-semibold">Module Name</p>
               <Input
                 type="text"
                 onChange={(e) => setModuleName(e.target.value)}

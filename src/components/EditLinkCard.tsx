@@ -1,4 +1,4 @@
-import { Button } from "@nextui-org/button";
+import React from "react";
 import {
   Modal,
   ModalContent,
@@ -7,19 +7,26 @@ import {
   ModalFooter,
 } from "@nextui-org/modal";
 import { Input } from "@nextui-org/input";
+import { Button } from "@nextui-org/button";
 
-const EditLinkCard: React.FC<{
+interface EditLinkCardProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   setLinkName: (linkName: string) => void;
-}> = ({ isOpen, onOpenChange, setLinkName }) => {
+}
+
+const EditLinkCard: React.FC<EditLinkCardProps> = ({
+  isOpen,
+  onOpenChange,
+  setLinkName,
+}) => {
   return (
     <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
       <ModalContent className="p-4 rounded-lg">
         {(onClose) => (
           <>
             <ModalHeader className="flex flex-col gap-1 font-semibold p-4">
-              Edit link
+              Edit Link
             </ModalHeader>
             <ModalBody>
               <div>
@@ -27,7 +34,7 @@ const EditLinkCard: React.FC<{
                 <Input type="text" variant="bordered" className="w-full" />
               </div>
               <div>
-                <p className="text-sm font-semibold">Display name</p>
+                <p className="text-sm font-semibold">Display Name</p>
                 <Input
                   type="text"
                   variant="bordered"
@@ -44,7 +51,7 @@ const EditLinkCard: React.FC<{
                 className="bg-[#008392] text-white rounded-lg"
                 onPress={onClose}
               >
-                Save changes
+                Save Changes
               </Button>
             </ModalFooter>
           </>

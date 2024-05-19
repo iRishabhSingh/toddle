@@ -11,7 +11,7 @@ function App() {
         <h5 className="text-lg font-semibold">Course builder</h5>
         <AddButton />
       </header>
-      <div>
+      <div className="py-2 max-w-[1024px] m-auto">
         <Module />
         <LinkCard />
         <FileCard />

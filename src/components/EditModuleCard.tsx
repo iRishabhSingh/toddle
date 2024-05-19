@@ -1,4 +1,4 @@
-import { Button } from "@nextui-org/button";
+import React from "react";
 import {
   Modal,
   ModalContent,
@@ -7,6 +7,7 @@ import {
   ModalFooter,
 } from "@nextui-org/modal";
 import { Input } from "@nextui-org/input";
+import { Button } from "@nextui-org/button";
 
 const EditModuleCard: React.FC<{
   isOpen: boolean;
@@ -19,11 +20,14 @@ const EditModuleCard: React.FC<{
         {(onClose) => (
           <>
             <ModalHeader className="flex flex-col gap-1 font-semibold p-4">
-              Edit module
+              Edit Module
             </ModalHeader>
             <ModalBody>
-              <p className="text-sm font-semibold">Module name</p>
+              <label htmlFor="moduleName" className="text-sm font-semibold">
+                Module Name
+              </label>
               <Input
+                id="moduleName"
                 type="text"
                 onChange={(e) => setModuleName(e.target.value)}
                 variant="bordered"
@@ -31,14 +35,18 @@ const EditModuleCard: React.FC<{
               />
             </ModalBody>
             <ModalFooter>
-              <Button variant="faded" onPress={onClose} className="rounded-lg">
+              <Button
+                variant="faded"
+                onPress={onClose}
+                className="rounded-lg mr-2"
+              >
                 Cancel
               </Button>
               <Button
                 className="bg-[#008392] text-white rounded-lg"
                 onPress={onClose}
               >
-                Save changes
+                Save Changes
               </Button>
             </ModalFooter>
           </>
